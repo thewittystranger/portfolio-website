@@ -1,6 +1,6 @@
 export const profile = {
   name: "Ankit Kumar Choudhary",
-  role: "Software Developer II",
+  role: "Software Developer II (ex- Goldman Sachs, Spinny) | Building high-throughput systems & microservices that drive efficiency, automate complexity, and save millions.",
   tagline:
     "Scalable Distributed Systems & High-Throughput Microservices",
   location: "Bengaluru, Karnataka",

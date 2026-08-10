@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { profile, summary } from "@/lib/content";
 import { MapPin, Mail, Phone, Download } from "lucide-react";
 import { LinkedinIcon, GithubIcon } from "@/components/icons";
+import Image from "next/image";
 
 const quickLinks = [
   { icon: Mail, label: "Email", href: `mailto:${profile.email}` },
@@ -22,16 +23,19 @@ export function AboutSection() {
           <p className="mt-2 text-lg font-medium text-accent">{profile.role}</p>
           <p className="mt-2 flex items-center gap-2 text-muted-foreground">
             <MapPin className="h-4 w-4" />
-            {profile.location} ·{" "}
+            {profile.location} |{" "}
             <a href={`tel:${profile.phone}`} className="hover:text-accent">
               {profile.phone}
             </a>
           </p>
         </div>
         <div className="shrink-0">
-          <img
-            src="/headshot.png"
+          <Image
+            src="headshot.png"
             alt={`${profile.name} headshot`}
+            width={128}
+            height={128}
+            priority
             className="h-28 w-28 rounded-full border-2 border-border object-cover shadow-lg shadow-accent/10 ring-2 ring-accent/10 sm:h-32 sm:w-32"
           />
         </div>
@@ -62,7 +66,7 @@ export function AboutSection() {
 
       <div className="flex flex-wrap gap-3">
         <a
-          href="/Ankit_Kumar_Choudhary_Resume.pdf"
+          href="Ankit_Kumar_Choudhary_Resume.pdf"
           className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground shadow-lg shadow-accent/20 transition-transform hover:-translate-y-0.5"
         >
           <Download className="h-4 w-4" />
