@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Ankit Kumar Choudhary | Software Developer II",
   description:
-    "Portfolio of Ankit Kumar Choudhary — Software Developer II specializing in scalable distributed systems, high-throughput microservices, and backend engineering.",
+    "Portfolio of Ankit Kumar Choudhary — Software Developer II (SDE-2) specializing in scalable distributed systems, low-latency microservices, and LLM coding-agent evaluation.",
 };
 
 export default function RootLayout({
