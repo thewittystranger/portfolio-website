@@ -9,11 +9,17 @@ const icons = [Bot, Code, Server, Database];
 export function SkillsSection() {
   return (
     <Section id="skills" eyebrow="Skills" title="Toolkit">
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {skills.map((group, i) => {
           const Icon = icons[i % icons.length];
           return (
-            <Reveal key={group.category} delay={i === 0 ? 0 : (i - 1) * 0.06} className={i === 0 ? "md:col-span-3" : ""}>
+            <Reveal key={group.category} delay={i === 0 ? 0 : (i - 1) * 0.06} className={
+              i === 0
+                ? "md:col-span-2 lg:col-span-3"
+                : i === skills.length - 1
+                  ? "md:col-span-2 lg:col-span-1"
+                  : ""
+            }>
               <div className="h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
                 <h3 className="flex items-center gap-3 font-semibold text-card-foreground">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent">
