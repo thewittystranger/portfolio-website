@@ -16,8 +16,8 @@ export function Hero() {
 
       <div className="flex flex-col-reverse gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
-          <p className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-medium text-accent sm:text-sm">
-            <span className="relative flex h-2 w-2" aria-hidden="true">
+          <p className="inline-flex items-start gap-2 rounded-2xl border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs leading-5 font-medium text-accent sm:rounded-full sm:text-sm">
+            <span className="relative mt-1.5 flex h-2 w-2 shrink-0" aria-hidden="true">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:animate-none" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
             </span>
@@ -45,9 +45,7 @@ export function Hero() {
           <p className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
             <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
             <span>
-              Based in {profile.location}
-              <span className="text-muted-foreground/70"> · </span>
-              <span className="whitespace-nowrap">{profile.workLocations}</span>
+              {profile.location} · {profile.workLocations}
             </span>
           </p>
 

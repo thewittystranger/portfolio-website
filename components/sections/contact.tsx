@@ -44,7 +44,7 @@ export function ContactSection() {
             Hiring for AI evaluation or backend? Let&apos;s talk.
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-            {profile.openTo}. {profile.workLocations}. I usually reply within a day.
+            {profile.openTo}. Based in {profile.location}, {profile.workLocations}.
           </p>
 
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">

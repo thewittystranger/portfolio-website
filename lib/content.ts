@@ -14,7 +14,7 @@ export const profile = {
   valueProp:
     "I build and grade evaluation tasks for frontier LLM coding agents, backed by 3 years shipping high-throughput microservices at Goldman Sachs and Spinny.",
   openTo: "Open to AI evaluation, forward-deployed and SDE-2 backend roles",
-  workLocations: "Remote · Bengaluru · Gurugram · Hyderabad",
+  workLocations: "open to remote, Gurugram and Hyderabad",
   location: "Bengaluru, India",
   phone: "+91-7067423108",
   email: "ankitchoudhary.sde@gmail.com",
@@ -100,7 +100,7 @@ export const experiences: Experience[] = [
   },
   {
     role: "Career Break",
-    org: "Planned time off",
+    org: "Upskilling in LLM coding agents",
     location: "",
     period: "May 2025 – Oct 2026",
     kind: "break",
