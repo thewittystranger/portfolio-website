@@ -2,6 +2,8 @@ export function LinkedinIcon({ className = "h-5 w-5" }: { className?: string }) 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
       viewBox="0 0 24 24"
       fill="currentColor"
       className={className}
@@ -15,6 +17,8 @@ export function GithubIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
       viewBox="0 0 24 24"
       fill="currentColor"
       className={className}
@@ -28,6 +32,8 @@ export function SpotifyIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
       viewBox="0 0 24 24"
       fill="currentColor"
       className={className}
@@ -41,6 +47,8 @@ export function InstagramIcon({ className = "h-5 w-5" }: { className?: string })
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
       viewBox="0 0 24 24"
       fill="currentColor"
       className={className}

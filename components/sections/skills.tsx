@@ -1,59 +1,36 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { Bot, Code, Server, Database } from "lucide-react";
 import { skills } from "@/lib/content";
-import { Code, Wrench, Database, Bot } from "lucide-react";
+import { Section } from "@/components/ui/section";
+import { Reveal } from "@/components/ui/reveal";
+import { Chip } from "@/components/ui/chip";
 
-const iconMap: Record<string, typeof Code> = {
-  "Languages & Core CS": Code,
-  "Backend & Architecture": Wrench,
-  "Data & Infrastructure": Database,
-  "AI & Evaluation": Bot,
-};
+const icons = [Bot, Code, Server, Database];
 
 export function SkillsSection() {
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Skills Matrix
-        </h2>
-        <p className="mt-2 text-muted-foreground">
-          A focused toolkit for building reliable, scalable systems.
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2">
-        {skills.map((category, i) => {
-          const Icon = iconMap[category.category] || Code;
+    <Section id="skills" eyebrow="Skills" title="Toolkit">
+      <div className="grid gap-4 md:grid-cols-2">
+        {skills.map((group, i) => {
+          const Icon = icons[i % icons.length];
           return (
-            <motion.div
-              key={category.category}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:border-accent/30 sm:p-8"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 text-accent">
-                <Icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 text-xl font-bold text-card-foreground">
-                {category.category}
-              </h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {category.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
-                  >
-                    {skill}
+            <Reveal key={group.category} delay={(i % 2) * 0.06} className={i === 0 ? "md:col-span-2" : ""}>
+              <div className="h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
+                <h3 className="flex items-center gap-3 font-semibold text-card-foreground">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                ))}
+                  {group.category}
+                </h3>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <Chip key={item}>{item}</Chip>
+                  ))}
+                </ul>
               </div>
-            </motion.div>
+            </Reveal>
           );
         })}
       </div>
-    </div>
+    </Section>
   );
 }
