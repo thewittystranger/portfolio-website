@@ -8,12 +8,14 @@ A modern, responsive, and production-ready personal portfolio for a Software Dev
 
 ## Features
 
-- **Interactive dashboard layout** — large Material-style cards on the left that switch the detail panel in the center (desktop).
-- **Responsive mobile & tablet navigation** — a sticky, horizontally scrollable pill bar on smaller screens while the desktop sidebar stays unchanged.
-- **Dark / light theme toggle** — defaults to a sleek dark theme with emerald accents.
+- **Recruiter-first single page** — hero with availability, key metrics and resume download above the fold; every section is reachable by scrolling, with a sticky scroll-spy nav.
+- **Responsive mobile & tablet navigation** — a sticky, horizontally scrollable pill bar on smaller screens and inline links on desktop.
+- **Dark / light theme toggle** — follows the visitor's system setting, with emerald accents.
 - **Resume-driven content** — experience, skills, education, achievements, and hobbies are all sourced from the provided resume.
 - **Rich media sections** — headshot, downloadable resume PDF, Instagram, Spotify, and social links.
 - **Smooth animations** — section transitions and staggered entrances powered by Framer Motion.
+- **Link previews & SEO** — Open Graph/Twitter card image, canonical URL and Person structured data.
+- **Accessible** — semantic headings, skip link, visible focus states, AA-contrast accents and reduced-motion support.
 - **Static export** — generates a fully static site in `dist/` for fast, CDN-friendly hosting.
 
 ---

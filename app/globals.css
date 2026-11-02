@@ -24,8 +24,8 @@
   --card-foreground: #0f172a;
   --border: #e2e8f0;
   --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #10b981;
+  --muted-foreground: #5b6b80;
+  --accent: #047857;
   --accent-foreground: #ffffff;
 }
 
@@ -43,6 +43,23 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 body {
@@ -59,7 +76,7 @@ body {
 .hero-glow {
   background: radial-gradient(
     circle at 50% 0%,
-    rgba(16, 185, 129, 0.15),
+    rgba(4, 120, 87, 0.12),
     transparent 50%
   );
 }

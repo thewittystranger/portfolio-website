@@ -1,87 +1,81 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { Briefcase, Coffee } from "lucide-react";
 import { experiences } from "@/lib/content";
-import { Building2 } from "lucide-react";
+import { Section } from "@/components/ui/section";
+import { Reveal } from "@/components/ui/reveal";
+import { Chip } from "@/components/ui/chip";
 
 export function ExperienceSection() {
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Experience
-        </h2>
-        <p className="mt-2 text-muted-foreground">
-          A track record of building resilient, high-throughput backend systems — and rigorous evaluation environments for AI coding agents.
-        </p>
-      </div>
+    <Section
+      id="experience"
+      eyebrow="Experience"
+      title="Where I've built and shipped"
+      intro="Evaluation work for frontier coding agents, on top of three years of production backend engineering."
+    >
+      <ol className="relative space-y-6 border-l border-border pl-6 sm:pl-8">
+        {experiences.map((exp, i) => {
+          const isBreak = exp.kind === "break";
+          const Icon = isBreak ? Coffee : Briefcase;
+          return (
+            <li key={`${exp.org}-${exp.period}`} className="relative">
+              <span
+                aria-hidden="true"
+                className={`absolute top-6 -left-[37px] flex h-6 w-6 items-center justify-center rounded-full border sm:-left-[45px] ${
+                  isBreak
+                    ? "border-border bg-background text-muted-foreground"
+                    : "border-accent/40 bg-background text-accent"
+                }`}
+              >
+                <Icon className="h-3 w-3" />
+              </span>
 
-      <div className="space-y-6">
-        {experiences.map((exp, i) => (
-          <motion.div
-            key={exp.company}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.12, duration: 0.5 }}
-            className="rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:border-accent/30 sm:p-8"
-          >
-            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                  <Building2 className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-card-foreground">
-                    {exp.company}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {exp.role}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-2 text-right sm:mt-0">
-                <span className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
-                  {exp.duration}
-                </span>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {exp.location}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 space-y-5">
-              {exp.projects.map((project) => (
-                <div
-                  key={project.title}
-                  className="rounded-2xl border border-border bg-background p-5"
+              <Reveal delay={Math.min(i, 3) * 0.05}>
+                <article
+                  className={`rounded-2xl border p-5 sm:p-7 ${
+                    isBreak ? "border-dashed border-border bg-transparent" : "border-border bg-card"
+                  }`}
                 >
-                  <h4 className="text-base font-bold text-foreground">
-                    {project.title}
-                  </h4>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    {project.description}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-                    {project.outcomes.map((outcome, idx) => (
-                      <li key={idx}>{outcome}</li>
+                  <header className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                    <div>
+                      <h3 className="text-lg font-bold text-card-foreground sm:text-xl">{exp.role}</h3>
+                      <p className="mt-0.5 text-sm font-medium text-muted-foreground sm:text-base">
+                        <span className={isBreak ? "" : "text-foreground"}>{exp.org}</span>
+                        {exp.type && <> · {exp.type}</>}
+                        {exp.location && <> · {exp.location}</>}
+                      </p>
+                    </div>
+                    <p className="shrink-0 text-sm font-medium text-muted-foreground sm:pt-1">
+                      {exp.period}
+                    </p>
+                  </header>
+
+                  <ul className="mt-4 space-y-2.5 text-sm leading-6 text-muted-foreground sm:text-[15px] sm:leading-7">
+                    {exp.highlights.map((item) => (
+                      <li key={item.text} className="flex gap-3">
+                        <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-accent/70" />
+                        <span>
+                          {item.label && (
+                            <span className="font-semibold text-foreground">{item.label}: </span>
+                          )}
+                          {item.text}
+                        </span>
+                      </li>
                     ))}
                   </ul>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
+
+                  {exp.tech && (
+                    <ul aria-label="Technologies" className="mt-5 flex flex-wrap gap-2">
+                      {exp.tech.map((t) => (
+                        <Chip key={t}>{t}</Chip>
+                      ))}
+                    </ul>
+                  )}
+                </article>
+              </Reveal>
+            </li>
+          );
+        })}
+      </ol>
+    </Section>
   );
 }

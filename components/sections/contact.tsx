@@ -1,144 +1,98 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { profile } from "@/lib/content";
-import { Mail, Phone, MapPin, Copy, Check } from "lucide-react";
-import { LinkedinIcon, GithubIcon } from "@/components/icons";
 import { useState } from "react";
+import { Check, Copy, Download, Mail, Phone } from "lucide-react";
+import { LinkedinIcon, GithubIcon } from "@/components/icons";
+import { profile, site } from "@/lib/content";
 
-const links = [
-  {
-    label: "LinkedIn",
-    value: profile.linkedin,
-    href: profile.linkedin,
-    icon: LinkedinIcon,
-  },
-  {
-    label: "GitHub",
-    value: profile.github,
-    href: profile.github,
-    icon: GithubIcon,
-  },
-];
+const focusRing =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 export function ContactSection() {
-  const [copied, setCopied] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
-  const copy = async (text: string, label: string) => {
-    await navigator.clipboard.writeText(text);
-    setCopied(label);
-    setTimeout(() => setCopied(null), 2000);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${profile.email}`;
+    }
   };
 
+  const links = [
+    { label: "LinkedIn", href: profile.linkedin, icon: LinkedinIcon, external: true },
+    { label: "GitHub", href: profile.github, icon: GithubIcon, external: true },
+    { label: profile.phone, href: `tel:${profile.phone.replace(/-/g, "")}`, icon: Phone, external: false },
+  ];
+
   return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Get in Touch
-        </h2>
-        <p className="mt-2 text-muted-foreground">
-          Open to opportunities, collaborations, and great engineering
-          conversations.
-        </p>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8"
-      >
-        <div className="grid gap-6 sm:grid-cols-2">
-          <a
-            href={`mailto:${profile.email}`}
-            className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 transition-colors hover:border-accent"
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="scroll-mt-28 border-t border-border py-16 sm:py-20 lg:scroll-mt-20"
+    >
+      <div className="relative overflow-hidden rounded-3xl border border-accent/30 bg-card px-5 py-10 text-center sm:px-10 sm:py-14">
+        <div aria-hidden="true" className="hero-glow pointer-events-none absolute inset-0" />
+        <div className="relative">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">Contact</p>
+          <h2
+            id="contact-title"
+            className="mx-auto mt-3 max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
           >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-              <Mail className="h-5 w-5" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Email
-              </p>
-              <p className="truncate text-sm font-medium text-foreground">
-                {profile.email}
-              </p>
-            </div>
-          </a>
+            Hiring for AI evaluation or backend? Let&apos;s talk.
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
+            {profile.openTo}. {profile.workLocations}. I usually reply within a day.
+          </p>
 
-          <a
-            href={`tel:${profile.phone}`}
-            className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 transition-colors hover:border-accent"
-          >
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-              <Phone className="h-5 w-5" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Phone
-              </p>
-              <p className="truncate text-sm font-medium text-foreground">
-                {profile.phone}
-              </p>
-            </div>
-          </a>
-
-          <div className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 transition-colors hover:border-accent sm:col-span-2">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-              <MapPin className="h-5 w-5" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Location
-              </p>
-              <p className="truncate text-sm font-medium text-foreground">
-                {profile.location}
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="grid gap-4">
-        {links.map((link) => (
-          <motion.a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-            className="flex items-center justify-between rounded-2xl border border-border bg-card p-5 transition-all hover:border-accent hover:bg-card/80"
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-muted text-muted-foreground">
-                <link.icon className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">
-                  {link.label}
-                </p>
-                <p className="text-sm text-muted-foreground">{link.value}</p>
-              </div>
-            </div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                copy(link.value, link.label);
-              }}
-              className="rounded-full p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-accent"
-              aria-label={`Copy ${link.label}`}
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <a
+              href={`mailto:${profile.email}`}
+              className={`inline-flex min-w-0 items-center justify-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground shadow-lg shadow-accent/20 ${focusRing}`}
             >
-              {copied === link.label ? (
-                <Check className="h-4 w-4 text-accent" />
+              <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span className="truncate">{profile.email}</span>
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className={`inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent ${focusRing}`}
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-accent" aria-hidden="true" />
               ) : (
-                <Copy className="h-4 w-4" />
+                <Copy className="h-4 w-4" aria-hidden="true" />
               )}
+              <span aria-live="polite">{copied ? "Copied" : "Copy email"}</span>
             </button>
-          </motion.a>
-        ))}
+            <a
+              href={site.resume}
+              download
+              className={`inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent ${focusRing}`}
+            >
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Resume
+            </a>
+          </div>
+
+          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
+            {links.map(({ label, href, icon: Icon, external }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className={`inline-flex items-center gap-2 rounded-md text-muted-foreground transition-colors hover:text-accent ${focusRing}`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

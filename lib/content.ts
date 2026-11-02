@@ -1,237 +1,219 @@
+export const site = {
+  url: "https://thewittystranger.github.io/portfolio-website/",
+  title: "Ankit Kumar Choudhary · LLM Coding-Agent Evaluation Engineer",
+  description:
+    "Ankit Kumar Choudhary builds and grades SWE-bench-style evaluation tasks for frontier LLM coding agents, backed by 3 years of backend engineering at Goldman Sachs and Spinny.",
+  resume: "Ankit_Kumar_Choudhary_Resume.pdf",
+};
+
 export const profile = {
   name: "Ankit Kumar Choudhary",
-  role: "Software Developer II (SDE-2) | Distributed Systems & Microservices | LLM Coding-Agent Evaluation",
-  tagline:
-    "Scalable Distributed Systems, Low-Latency Microservices & LLM Coding-Agent Evaluation",
-  location: "Bengaluru, Karnataka",
+  firstName: "Ankit",
+  headline: "LLM Coding-Agent Evaluation Engineer",
+  subheadline: "Backend & Distributed Systems (SDE-2)",
+  valueProp:
+    "I build and grade evaluation tasks for frontier LLM coding agents, backed by 3 years shipping high-throughput microservices at Goldman Sachs and Spinny.",
+  openTo: "Open to AI evaluation, forward-deployed and SDE-2 backend roles",
+  workLocations: "Remote · Bengaluru · Gurugram · Hyderabad",
+  location: "Bengaluru, India",
   phone: "+91-7067423108",
   email: "ankitchoudhary.sde@gmail.com",
   linkedin: "https://linkedin.com/in/ankitchoudharysde",
   github: "https://github.com/thewittystranger",
   instagram: "https://instagram.com/sukoonkimehfil",
+  previously: ["Goldman Sachs", "Spinny"],
 };
 
-export const summary = {
-  text: `I am an SDE-2 and Codeforces Expert (1800+) who enjoys solving complex backend challenges and building distributed systems and low-latency microservices that scale seamlessly. My work sits at the intersection of robust architecture and high-throughput engineering—turning messy product requirements into clean, high-performance, and cost-effective technical solutions.
+export const metrics = [
+  { value: "~30", label: "Verified SWE-bench-style tasks, ~70 agent trials" },
+  { value: "120 TPS", label: "Sustained at 70 ms P99 in production" },
+  { value: "~$150K", label: "Saved per quarter (₹1.3 Cr) via anomaly detection" },
+  { value: "1800+", label: "Codeforces Expert rating" },
+];
 
-At Goldman Sachs and Spinny, I designed event-driven microservices and data pipelines with Java, Spring Boot, Python, and Django—running services at 120 TPS with a 70 ms P99, and building an anomaly-detection system that cut lead leakage by 22% and saved ₹1.3 Cr every quarter.
-
-Today I also work on the frontier of AI: building Docker evaluation environments, hidden fail-to-pass tests, and grading rubrics for frontier LLM coding agents on real open-source Python and Java codebases—including distributed-systems tasks like merging a 33-commit Redis Cluster PR graded on a live 3-node cluster.
-
-Beyond writing code, I care deeply about engineering standards: rigorous reviews, deterministic tests, and graders that can't be gamed. If you're looking for someone who treats system reliability, performance, and correctness as first-class citizens, let's connect!`,
-  highlights: [
+export const about = {
+  paragraphs: [
+    "I author SWE-bench-style tasks on real open-source codebases: reproducible Docker environments, hidden fail-to-pass and regression tests, and rubrics that catch reward hacking and fabricated claims. Every task is verified three ways — the starting code fails, the reference passes, and plausible wrong fixes fail.",
+    "Before evaluation work, I spent three years building Java/Spring Boot and Python/Django microservices at Goldman Sachs and Spinny: event-driven pipelines, distributed caching and anomaly detection that moved real business numbers. That production background is why my tasks test what actually breaks in real systems.",
+  ],
+  focus: [
     {
-      metric: "₹1.3 Cr",
-      label: "Saved quarterly via anomaly detection",
+      title: "Agent evaluation tasks",
+      text: "SWE-bench-style tasks on Python and Java codebases up to 355k lines, in Docker sandboxes that build in under 15 minutes.",
     },
     {
-      metric: "120 TPS",
-      label: "Sustained at 70 ms P99",
+      title: "Graders that can't be gamed",
+      text: "Hidden tests and 8-dimension rubrics with fabrication checks; closed a skip-every-test exploit the old grader missed.",
     },
     {
-      metric: "280/s",
-      label: "PDFs rendered across 10 nodes",
-    },
-    {
-      metric: "1800+",
-      label: "Codeforces Expert rating",
+      title: "Backend & distributed systems",
+      text: "Event-driven microservices, CDC with Kafka, Hazelcast and Redis — 120 TPS at 70 ms P99 and 280 PDFs/s across 10 nodes.",
     },
   ],
 };
 
-export const experiences = [
+export type Experience = {
+  role: string;
+  org: string;
+  type?: string;
+  location: string;
+  period: string;
+  kind?: "break";
+  highlights: { label?: string; text: string }[];
+  tech?: string[];
+};
+
+export const experiences: Experience[] = [
   {
-    company: "Freelance",
-    role: "AI Engineer — LLM Coding-Agent Evaluation & Task Author",
-    duration: "Oct 2026 – Present",
+    role: "LLM Coding-Agent Evaluation Engineer",
+    org: "Freelance",
+    type: "Contract",
     location: "Remote",
-    projects: [
+    period: "Oct 2026 – Present",
+    highlights: [
       {
-        title: "Containerised AI Sandboxes",
-        description:
-          "Built reproducible Docker evaluation environments (pinned commits, PostgreSQL, Redis) on real open-source Python and Java codebases of up to 355k lines.",
-        tech: ["Docker", "Python", "Java", "PostgreSQL", "Redis"],
-        outcomes: [
-          "Codebases up to 355k lines",
-          "Environment builds under 15 minutes",
-          "Fully pinned, reproducible setups",
-        ],
+        label: "Task authoring",
+        text: "Authored ~30 verified SWE-bench-style tasks on real open-source Python and Java codebases (up to 355k lines), validated across ~70 agent trials.",
       },
       {
-        title: "Deterministic Verification & Grader Hardening",
-        description:
-          "Authored ~30 task versions over 7 rounds (~70 agent trials) with hidden fail-to-pass and regression tests, each verified so that starting code fails, the reference passes, and wrong fixes fail.",
-        tech: ["pytest", "Harbor", "OpenCode", "mini-swe-agent"],
-        outcomes: [
-          "Hardened graders: a skip-every-test hack that passed the old grader now fails",
-          "Fixed OpenBLAS oversubscription in emulated containers (7.5 s → 0.45 s)",
-          "Every task verified against wrong fixes before release",
-        ],
+        label: "Reproducible environments",
+        text: "Built Docker sandboxes with pinned commits, PostgreSQL and Redis; every environment builds in under 15 minutes.",
       },
       {
-        title: "Distributed-Systems Tasks",
-        description:
-          "Merged a real 33-commit Redis Cluster PR into a newer master, graded on a 3-node Docker cluster, and built lock-ownership, shutdown-race and monotonic-clock migration tasks.",
-        tech: ["Redis Cluster", "Docker", "Concurrency"],
-        outcomes: [
-          "33-commit PR merged onto newer master",
-          "Graded on a live 3-node cluster",
-          "Concurrency and clock-safety task suite",
-        ],
+        label: "Deterministic grading",
+        text: "Wrote hidden fail-to-pass and regression tests (pytest), each verified three ways: starting code fails, reference solution passes, plausible wrong fixes fail.",
       },
       {
-        title: "Trajectory Analysis & Review",
-        description:
-          "Graded agent trajectories with 8-dimension rubrics and fabrication checks, and reviewed peer submissions for rubric accuracy.",
-        tech: ["Rubric Design", "Trajectory Analysis", "Prompt Design"],
-        outcomes: [
-          "Corrected 7 of 12 rubrics in a peer review",
-          "Wrote a 35-line source-verified review checklist",
-        ],
+        label: "Distributed-systems tasks",
+        text: "Ported a 33-commit Redis Cluster PR onto a newer master and graded it on a 3-node Docker cluster; built lock-ownership, shutdown-race and monotonic-clock migration tasks.",
+      },
+      {
+        label: "Anti-reward-hacking",
+        text: "Hardened graders so a skip-every-test exploit that passed the old grader now fails; fixed OpenBLAS oversubscription in emulated containers, cutting test time from 7.5 s to 0.45 s.",
+      },
+      {
+        label: "Trajectory review & QA",
+        text: "Graded agent trajectories on 8-dimension rubrics with fabrication checks; as QA reviewer, caught errors in 7 of 12 rubrics on a peer submission and wrote a source-verified review checklist.",
+      },
+    ],
+    tech: ["Docker", "pytest", "Python", "Java", "Redis Cluster", "PostgreSQL", "Harbor", "OpenCode", "mini-swe-agent"],
+  },
+  {
+    role: "Career Break",
+    org: "Planned time off",
+    location: "",
+    period: "May 2025 – Oct 2026",
+    kind: "break",
+    highlights: [
+      { text: "Took planned time off for a personal health matter, now back at work full-time." },
+      {
+        text: "Upskilled in LLM coding agents, agent evaluation tooling and system design, which led directly to my current evaluation contract work.",
       },
     ],
   },
   {
-    company: "Spinny",
     role: "Software Developer II (SDE-2)",
-    duration: "Dec 2024 – May 2025",
-    location: "Gurugram, Haryana",
-    projects: [
+    org: "Spinny",
+    location: "Gurugram",
+    period: "Dec 2024 – May 2025",
+    highlights: [
       {
-        title: "Distributed Lead Leakage & Anomaly Detection",
-        description:
-          "Designed a distributed anomaly-detection pipeline over call and activity logs from 2,500+ field inspectors, with Redis caching for state deduplication and Firebase for instant fraud alerts.",
-        tech: ["Python", "Django", "MongoDB", "Redis", "Firebase"],
-        outcomes: [
-          "Flagged 300+ anomalous activities monthly",
-          "Reduced leakage by 22%",
-          "Saved ₹1.3 Cr quarterly",
-        ],
+        label: "Anomaly detection",
+        text: "Designed a distributed pipeline over call and activity logs from 2,500+ field inspectors, with Redis deduplication and real-time fraud alerts.",
       },
       {
-        title: "Automated Inspection Cost Prediction",
-        description:
-          "Built a part and labour cost engine for 5,000+ daily inspections using a Camunda issue-probability matrix.",
-        tech: ["Python", "Django", "Pandas", "Redis", "Camunda BPM"],
-        outcomes: [
-          "Reduced manual effort by 85%",
-          "5,000+ inspections priced daily",
-          "Improved pricing consistency",
-        ],
+        label: "Impact",
+        text: "Flagged 300+ anomalies a month, cut lead leakage by 22% and saved ₹1.3 Cr (~$150K) per quarter.",
+      },
+      {
+        label: "Cost prediction",
+        text: "Built a parts and labor cost engine for 5,000+ daily inspections using a Camunda BPM issue-probability matrix, cutting manual effort by 85%.",
       },
     ],
+    tech: ["Python", "Django", "MongoDB", "Redis", "Firebase", "Pandas", "Camunda BPM"],
   },
   {
-    company: "Goldman Sachs",
     role: "Software Developer",
-    duration: "Jun 2022 – Aug 2024",
-    location: "Bengaluru, Karnataka",
-    projects: [
+    org: "Goldman Sachs",
+    location: "Bengaluru",
+    period: "Jun 2022 – Aug 2024",
+    highlights: [
       {
-        title: "High-Throughput Prospect Capture",
-        description:
-          "Designed a prospect-capture microservice on MongoDB Change Streams (CDC) and Kafka, tuning connection pooling, indexing and @Async, with AES-256 PII encryption and Resilience4j.",
-        tech: ["Java", "Spring Boot", "MongoDB Change Streams", "Kafka", "Redis"],
-        outcomes: [
-          "Raised customer engagement by 23%",
-          "120 transactions per second at 70 ms P99",
-          "AES-256 encryption for PII",
-        ],
+        label: "Event-driven capture",
+        text: "Designed a prospect-capture microservice on MongoDB Change Streams (CDC) and Kafka, raising customer engagement by 23%.",
       },
       {
-        title: "Distributed Statement Generation",
-        description:
-          "Scaled a statement-rendering microservice across 10 nodes using Hazelcast distributed caching.",
-        tech: ["Java", "Spring Boot", "Hazelcast", "iText", "PhantomJS"],
-        outcomes: [
-          "280 PDFs per second",
-          "Scaled across 10 nodes",
-          "+30% rendering efficiency",
-        ],
+        label: "Performance & security",
+        text: "Sustained 120 TPS at 70 ms P99 through connection pooling, indexing and @Async, with AES-256 PII encryption and Resilience4j.",
       },
       {
-        title: "Enterprise Bundle Management System",
-        description:
-          "Built a secure internal APK distribution platform for on-ground banking employees, enabling APK access without Play Store dependency.",
-        tech: ["Java", "Spring Boot", "AWS S3"],
-        outcomes: [
-          "50+ APK releases/month",
-          "Zero deployment downtime",
-          "200 ms version-check APIs",
-        ],
+        label: "Distributed rendering",
+        text: "Scaled a statement-generation service across 10 Hazelcast nodes to 280 PDFs per second.",
+      },
+      {
+        label: "Release platform",
+        text: "Built an internal APK distribution system on AWS S3 handling 50+ releases a month with zero downtime and 200 ms version checks.",
       },
     ],
+    tech: ["Java", "Spring Boot", "MongoDB", "Kafka", "Redis", "Hazelcast", "Resilience4j", "AWS S3"],
   },
 ];
 
 export const skills = [
   {
-    category: "Languages & Core CS",
+    category: "AI Evaluation",
     items: [
-      "Java",
-      "Python",
-      "C++",
-      "SQL",
-      "Data Structures & Algorithms",
-      "System Design",
-      "OOP",
-      "Concurrency",
+      "LLM coding-agent evaluation",
+      "SWE-bench-style task authoring",
+      "RLHF data",
+      "Agent trajectory analysis",
+      "Rubric design",
+      "Reward-hacking detection",
+      "Code review",
+      "Prompt design",
+      "Harbor",
+      "OpenCode",
+      "mini-swe-agent",
     ],
   },
   {
-    category: "Backend & Architecture",
+    category: "Languages",
+    items: ["Python", "Java", "C++", "SQL"],
+  },
+  {
+    category: "Backend",
     items: [
       "Spring Boot",
       "Django",
       "Flask",
       "Microservices",
       "REST APIs",
-      "Event-Driven Architecture",
+      "Event-driven architecture",
+      "Concurrency",
+      "System design",
     ],
   },
   {
     category: "Data & Infrastructure",
-    items: [
-      "MongoDB",
-      "PostgreSQL",
-      "Redis",
-      "Kafka",
-      "Hazelcast",
-      "Firebase",
-      "AWS S3",
-      "Docker",
-      "Git",
-    ],
-  },
-  {
-    category: "AI & Evaluation",
-    items: [
-      "LLM Agent Evaluation",
-      "Prompt Design",
-      "Rubric Design",
-      "Trajectory Analysis",
-      "Harbor",
-      "OpenCode",
-      "mini-swe-agent",
-    ],
+    items: ["Docker", "PostgreSQL", "MongoDB", "Redis", "Kafka", "Hazelcast", "Firebase", "AWS S3", "Git", "pytest"],
   },
 ];
 
 export const education = {
-  degree: "B.Tech - Computer Science and Engineering",
-  school: "National Institute Of Technology, Patna",
-  duration: "2018 – 2022",
-  location: "Patna, Bihar",
-  cgpa: "7.51/10.00",
+  degree: "B.Tech, Computer Science and Engineering",
+  school: "National Institute of Technology, Patna",
+  period: "2018 – 2022",
 };
 
-export const achievements = [
-  "Saved ₹1.3 Cr quarterly by engineering an anomaly-detection system that reduced lead leakage by 22%",
-  "Expert (1800+) on Codeforces",
-  "Reduced manual effort by 85% with an automated cost-prediction engine for 5,000+ daily inspections",
-  "Built a CDC + Kafka prospect-capture service sustaining 120 TPS at 70 ms P99, raising customer engagement by 23%",
-  "Scaled distributed statement generation to 280 PDFs per second across 10 nodes",
-  "Hardened LLM coding-agent graders so a skip-every-test hack that passed the old grader now fails",
+export const recognition = [
+  {
+    title: "Codeforces Expert",
+    text: "Competitive programming rating of 1800+.",
+  },
+  {
+    title: "₹1.3 Cr saved per quarter",
+    text: "Anomaly-detection system at Spinny that cut lead leakage by 22%.",
+  },
 ];
 
 export const hobbies = {
@@ -246,7 +228,7 @@ export const hobbies = {
   audio: {
     title: "Retro, Hi-Fi & The Written Word",
     description:
-      "A devoted listener of classic retro tracks and an enthusiast for high-fidelity gear — from precision-tuned IEMs to dedicated DAC setups. I also write Urdu poetries and ghazals, lose myself in books, and experiment in the kitchen whenever I need a creative reset.",
+      "A devoted listener of classic retro tracks and an enthusiast for high-fidelity gear — from precision-tuned IEMs to dedicated DAC setups. I also write Urdu poetry and ghazals, lose myself in books, and experiment in the kitchen whenever I need a creative reset.",
     artists: ["Mohammed Rafi", "Kishore Kumar", "Lata Mangeshkar", "Mukesh"],
     link: "https://open.spotify.com/playlist/75jiwp9Aoz5l7R2VzmwQSr?si=8512948f50bd4903",
     linkLabel: "Listen on Spotify",
