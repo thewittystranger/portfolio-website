@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import { skills } from "@/lib/content";
-import { Code, Wrench, Brain } from "lucide-react";
+import { Code, Wrench, Database, Bot } from "lucide-react";
 
 const iconMap: Record<string, typeof Code> = {
-  Programming: Code,
-  "Technologies / Frameworks / Dev Tools": Wrench,
-  "Core Competencies": Brain,
+  "Languages & Core CS": Code,
+  "Backend & Architecture": Wrench,
+  "Data & Infrastructure": Database,
+  "AI & Evaluation": Bot,
 };
 
 export function SkillsSection() {

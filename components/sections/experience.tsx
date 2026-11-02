@@ -12,7 +12,7 @@ export function ExperienceSection() {
           Experience
         </h2>
         <p className="mt-2 text-muted-foreground">
-          A track record of building resilient, high-throughput backend systems.
+          A track record of building resilient, high-throughput backend systems — and rigorous evaluation environments for AI coding agents.
         </p>
       </div>
 
